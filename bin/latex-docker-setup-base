@@ -11,6 +11,9 @@ BASE_DIR="$(dirname "$THIS_DIR")"
 BASE_NAME="$(basename "$BASE_DIR")"
 base_name="$(echo $BASE_NAME | tr ' [:upper:]' '_[:lower:]')"
 
+ARCH=$(uname -m)
+sed -e "s/x86_64/${ARCH/v7l/hf}" -i ${BASE_DIR}/dockers/latex-base/Dockerfile
+
 if ! which docker > /dev/null
 then
     echo "you must install docker..."
